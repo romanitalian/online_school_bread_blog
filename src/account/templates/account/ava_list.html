@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    {% for ava in object_list %}
+        <div>
+            {{ ava.file_path }} <br/>
+            <img src="{{ ava.file_path.url }}" alt="" width="150">
+        </div>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
+
+

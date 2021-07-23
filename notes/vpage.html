@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-page</title>
+    <script src="./vue@next"></script>
+    <style>
+        .active {
+            color: orangered;
+        }
+    </style>
+</head>
+<body>
+        <div id="app"></div>
+
+
+    <script>
+    Vue.createApp({
+        data() {
+            return {
+                count: 4,
+                msg: "help text",
+
+                voteMsg: "You are not voted",
+                isActive: true,
+
+                fooStatus: true,
+            }
+        },
+        delimiters: ['[[', ']]'],
+        methods: {
+            increment() {
+                this.count++;
+                this.isActive = false;
+                this.voteMsg = `Yes - You did it! Great work! Result now: ${this.count}`;
+                this.fooStatus = false;
+            }
+        },
+         template: `
+            <h1 v-if="fooStatus">Hello there</h1>
+            <h1 v-else>Farewell!</h1>
+
+
+            <div v-bind:title="msg + ';' + ' 777'">[[ msg ]]</div>
+            <button @click="increment">VOTE</button>
+            <div v-bind:class="{ active: !isActive }">[[ voteMsg ]]</div>
+          `
+    }).mount('#app');
+    </script>
+</body>
+</html>

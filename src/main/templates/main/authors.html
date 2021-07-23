@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ title }}</h1>
+    <div class="payload">
+<!--        <ul>-->
+<!--            {% for author in authors %}-->
+<!--            <li class="row">-->
+<!--                <b>#{{ author.id }}</b>&nbsp;&dash;{{ author.full_name }}&nbsp;<span class="grey">[{{ author.email }}]</span>-->
+<!--            </li>-->
+<!--            <hr>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+
+            <table class="table table-hover table-sm">
+            <thead>
+            <tr>
+                <th scope="col">ID автора</th>
+                <th scope="col">Полное имя автора</th>
+                <th scope="col">email</th>
+                <th scope="col">Количество книг</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{ forloop.counter }} - {{ author.id }}</td>
+                <td>{{ author.full_name }}</td>
+                <td>{{ author.email }}</td>
+                <td>{{ author.books.count }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

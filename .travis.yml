@@ -1,0 +1,14 @@
+language: python
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "3.9"
+install:
+  - pip install -r requirements.txt
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+script:
+  - flake8 .
+  - python blog/manage.py check
+  - python blog/manage.py makemigrations --check --dry-run

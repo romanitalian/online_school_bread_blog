@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ title }}</h1>
+    <div class="payload">
+        count: {{ cnt }}
+
+        <form method="GET">
+            {{ filter.form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span>Искать
+            </button>
+        </form>
+    
+        <ul>
+            {% for pst in post_list %}
+            <h4>
+                {{ forloop.counter }} <a href="{% url 'post_show' post_id=pst.id %}">{{ pst.title }}</a>
+            </h4>
+            <li class="row">
+                <span class="grey summary">{{ pst.description }}</span>
+                {{ pst.content }}
+            </li>
+            <hr>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{{ get_params }}">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}{{ get_params }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{{ get_params }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}{{ get_params }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+
+    <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'imgs/favicon' %}/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'imgs/favicon' %}/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'imgs/favicon' %}/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'imgs/favicon' %}/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'imgs/favicon' %}/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'imgs/favicon' %}/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'imgs/favicon' %}/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'imgs/favicon' %}/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'imgs/favicon' %}/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'imgs/favicon' %}/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'imgs/favicon' %}/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'imgs/favicon' %}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'imgs/favicon' %}/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'imgs/favicon' %}/favicon-16x16.png">
+    <link rel="manifest" href="{% static 'imgs/favicon' %}/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/libs/vue.js' %}"></script>
+
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<nav class="container">
+    <ul>
+        <li><a href="{% url 'home_page' %}">Хлебная</a></li>
+        <li><a href="{% url 'about' %}">О нас</a></li>
+        <li><a href="{% url 'posts_list' %}">Все Посты</a></li>
+        <li><a href="{% url 'post_create' %}">Создать Пост</a></li>
+
+        <li><a href="{% url 'authors_all' %}">Все Авторы</a></li>
+        <li><a href="{% url 'authors_new' %}">Сгенерить Автора</a></li>
+
+        <li><a href="{% url 'author_subscribe' %}">Подписаться на Автора</a></li>
+        <li><a href="{% url 'author_subscribers_all' %}">Все подписки</a></li>
+        <li><a href="{% url 'contact-us-create' %}">Обратная связь</a></li>
+        <li><a href="{% url 'posts_list_csv' %}">Выгрузить все Посты в CSV</a></li>
+
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'account:my_profile' %}">Аккаунт</a></li>
+        <li><a href="{% url 'account:my_profile_ava_create' %}">Загрузить Аватар</a></li>
+        <li><a href="{% url 'account:my_profile_ava_list' %}">Аватарки</a></li>
+        {% endif %}
+    </ul>
+    <hr>
+    {% block content %}{% endblock %}
+    <script src="{% static 'js/posts.js' %}"></script>
+</nav>
+
+</body>
+</html>

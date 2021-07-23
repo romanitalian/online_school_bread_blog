@@ -1,0 +1,108 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: bread-nginx
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+#      - ./nginx/proxy_params:/etc/nginx/proxy_params
+#      - ./static_content:/etc/nginx/static_content/
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+
+  backend:
+    build: .
+    container_name: bread-backend
+    command: make ${RUN_COMMAND}
+    tty: true
+    stdin_open: true
+    restart: always
+    ports:
+    - "8000:8000"
+    - "9000:9000"
+    volumes:
+    - ./:/srv/project
+#    depends_on:
+#      - memcached
+#      - mq
+#      - postgres
+    env_file: .env
+
+
+
+
+#  celery:
+#    build: .
+#    container_name: celery
+#    command: make celery-run
+#    restart: always
+#    env_file: .env
+#    depends_on:
+#      - mq
+#    volumes:
+#      - ./:/srv/project
+#
+#  celerybeat:
+#    build: .
+#    container_name: celerybeat
+#    command: make celerybeat-run
+#    restart: always
+#    env_file: .env
+#    depends_on:
+#      - mq
+#    volumes:
+#      - ./:/srv/project
+#
+#  memcached:
+#    image: memcached:1.6.9
+#    container_name: memcached
+#    tty: true
+#    stdin_open: true
+#    restart: always
+
+#  rabbitmq:
+#    image: rabbitmq:3.8-rc-management
+#    container_name: rabbitmq
+#    tty: true
+#    stdin_open: true
+#    restart: always
+#    env_file: .env
+##    ports:
+##      - "15672:15672"
+
+#  mq:
+#    image: redis:6.2.4
+#    container_name: bread-mq
+#    tty: true
+#    stdin_open: true
+#    restart: always
+#    env_file: .env
+#
+#  redis-commander:
+#    container_name: redis-commander
+#    hostname: redis-commander
+#    image: rediscommander/redis-commander:latest
+#    restart: always
+#    environment:
+#    - REDIS_HOSTS=redis_container:mq:6379
+#    ports:
+#    - "8081:8081"
+#
+#  postgres:
+#    image: postgres:12-alpine
+#    container_name: bread-db
+#    tty: true
+#    stdin_open: true
+#    restart: always
+#    env_file: .env
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+#
+#volumes:
+#  db_data:

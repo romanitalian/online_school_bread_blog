@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+    <style>
+    #loading {
+        width: 30px;
+        display: none;
+    }
+    </style>
+<div class="container">
+    <h1>{{ title }}</h1>
+    <h2 class="grey">Блог про хлеб.</h2>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Purple_circle_100%25.svg" id="loading" alt="loading" >
+
+
+    <div class="payload text-center">
+        <img src="{% static 'imgs/bread.png' %}" alt="bread" class="page-img"/>
+    </div>
+
+    <div id="page-text">
+       <p>
+            If there is a better smell in the universe than baking bread, I’d really like to know what it is. And the flavor
+            and texture of warm, home-made bread, fresh from the oven, feeds your body and your soul like no other food.
+        </p>
+
+        <p>
+            Not only does the aroma of bread in the oven automatically cause all human faces to melt into angelic smiles, it
+            actually makes you a better person. No, really! So we at Breadtopia feel it is a moral imperative that everyone
+            have fresh-baked bread as often as possible; the future of humanity may well depend on it.
+        </p>
+        <p>
+            We Breadtopians are what you might call pragmatic bread freaks. We live to push the envelope on baking the best
+            possible bread that you can make in a standard home kitchen. For us, it’s all about reviving an artful
+            alternative to the bland, nutrition-less, mass-produced food on grocery store shelves. And make no mistake:
+            using inexpensive, but premium raw ingredients and a nominal amount of baking gear, you can make the best loaf
+            of bread you’ve ever had — at home in your kitchen — with a total labor investment of about ten minutes. Yup,
+            ten minutes (less once you get good at it).
+        </p>
+        <p>
+            In 2006, the NY Times published a story featuring NY baker Jim Lahey’s no-knead bread recipe. We ran with it and
+            over years of experimentation in our own kitchen and via a collaborative effort of sharing the results of trial
+            and error with our generous Breadtopia readers, we have created many variations and refinements of the basic
+            no-knead method, including our own adaptation of the no-knead method to sourdough baking. It makes it super-easy
+            to bake perfect, abundantly nutritious, impossibly delicious artisanal bread at home. And that’s what we’re all
+            about.
+        </p>
+    </div>
+</div>
+{% endblock %}

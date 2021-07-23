@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Создать пост{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Создать пост</h1>
+    <div class="error">
+        {{ err_my }}
+    </div>
+    <div class="payload">
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.title }}
+            {{ form.description }}
+            {{ form.content }}
+
+            <br>
+            <button class="btn btn-lg btn-success">Сохранить</button>
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}
